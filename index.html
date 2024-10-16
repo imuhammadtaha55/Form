@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Builder</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h2>Create Your Resume</h2>
+        <form id="resumeForm">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" >
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" >
+
+            <label for="education">Education:</label>
+            <textarea id="education" rows="3" ></textarea>
+
+            <label for="experience">Work Experience:</label>
+            <textarea id="experience" rows="3" ></textarea>
+
+            <label for="skills">Skills:</label>
+            <textarea id="skills" rows="3" ></textarea>
+
+            
+        </form>
+        <a href="./Resume/index.html"><button>Generate Resume</button>
+        </a>
+    </div>
+
+    <script>
+        document.getElementById('resumeForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const education = document.getElementById('education').value;
+            const experience = document.getElementById('experience').value;
+            const skills = document.getElementById('skills').value;
+
+            let resumeContent = `
+                <h1>${name}</h1>
+                <p>Email: ${email}</p>
+                <h2>Education</h2>
+                <p>${education}</p>
+                <h2>Work Experience</h2>
+                <p>${experience}</p>
+                <h2>Skills</h2>
+                <p>${skills}</p>
+            `;
+
+            const newWindow = window.open();
+            newWindow.document.write(`<html><head><title>${name}'s Resume</title></head><body>${resumeContent}</body></html>`);
+            newWindow.document.close();
+        });
+    </script>
+
+</body>
+</html>
